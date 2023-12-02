@@ -21,11 +21,12 @@ function QueryChat() {
 
   const [chats, setChats] = useState<IMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit } = useForm<IForm>();
+  const { register, handleSubmit, reset } = useForm<IForm>();
 
   const onValid = ({ message }: IForm) => {
     if (!isLoading) {
       setChats((prev) => [...prev, { isGPT: false, message }]);
+      reset();
       setIsLoading(true);
       setChats((prev) => [
         ...prev,
@@ -44,7 +45,7 @@ function QueryChat() {
   return (
     <>
       <div
-        className="h-[50%] items-center overflow-y-auto px-[5%] sm:h-[45%]"
+        className="h-[50%] items-center overflow-y-auto px-[5%] pb-[2%] sm:h-[45%]"
         ref={scrollRef}
       >
         <div className="flex h-full w-full flex-col justify-end gap-2">
@@ -69,7 +70,7 @@ function QueryChat() {
         </div>
       </div>
       <form
-        className="relative flex w-full px-5"
+        className="relative flex w-full px-5 "
         onSubmit={handleSubmit(onValid)}
       >
         <input

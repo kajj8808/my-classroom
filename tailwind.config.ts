@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        productColor: "#00F0FF",
+        textColor: "#2B2B2B",
+        bgColor: "#f5f5f5",
+        ringColor: "#CCCCCC",
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -15,6 +21,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar'), require('@tailwindcss/line-clamp'),
+  ],
 }
 export default config

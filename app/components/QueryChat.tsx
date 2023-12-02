@@ -69,7 +69,7 @@ function QueryChat() {
         </div>
       </div>
       <form
-        className="relative flex w-full px-5 pt-[1%]"
+        className="relative flex w-full px-5"
         onSubmit={handleSubmit(onValid)}
       >
         <input

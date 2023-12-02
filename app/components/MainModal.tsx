@@ -48,7 +48,7 @@ export default function MainModal({
         className="z-30 h-full w-full bg-[rgba(0,0,0,0.7)]"
         onClick={onClick}
       ></div>
-      <div className="scrollbar-none absolute z-50 h-full w-full max-w-5xl overflow-scroll rounded-t-3xl bg-white p-5 sm:top-[8%] sm:h-[92%] sm:w-10/12 sm:p-10">
+      <div className="absolute z-50 h-full w-full max-w-5xl overflow-scroll bg-white p-10 scrollbar-none sm:top-[8%] sm:h-[92%] sm:w-10/12 sm:rounded-t-3xl sm:p-10">
         <div className="flex items-center justify-between">
           <div className="flex gap-1 font-bold">
             <span>[{title}]</span>
@@ -74,7 +74,7 @@ export default function MainModal({
             />
           </div>
         ) : null}
-        <div className="mt-5 h-4/5 w-full rounded-lg bg-[#F5F5F5] p-0.5 ring ring-ringColor sm:h-3/5">
+        <div className="mt-5 h-4/5 w-full rounded-lg bg-[#F5F5F5] p-0.5 pb-5 ring ring-ringColor sm:h-3/5">
           {summary ? (
             <div className="h-full">
               <QuerySummary summary={summary} />

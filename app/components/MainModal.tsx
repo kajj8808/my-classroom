@@ -48,8 +48,8 @@ export default function MainModal({
         className="z-30 h-full w-full bg-[rgba(0,0,0,0.7)]"
         onClick={onClick}
       ></div>
-      <div className="absolute z-50 h-full w-full max-w-5xl overflow-scroll bg-white p-10 scrollbar-none sm:top-[8%] sm:h-[92%] sm:w-10/12 sm:rounded-t-3xl sm:p-10">
-        <div className="flex items-center justify-between">
+      <div className="absolute z-50 h-full w-full max-w-5xl overflow-scroll bg-white px-10 py-5 scrollbar-none sm:top-[5%] sm:h-[95%] sm:w-10/12 sm:rounded-t-3xl sm:p-10 sm:p-10">
+        <div className="flex h-[5%] items-center justify-between">
           <div className="flex gap-1 font-bold">
             <span>[{title}]</span>
             <span>{videoId}</span>
@@ -66,15 +66,16 @@ export default function MainModal({
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; auto"
         ></iframe> */}
         {hasWindow ? (
-          <div className="mt-5 overflow-hidden rounded-lg ring ring-ringColor">
+          <div className="mt-5 h-[30%] overflow-hidden rounded-lg ring ring-ringColor">
             <ReactPlayer
               url={[`https://www.youtube.com/embed/${videoId}`]}
               controls
               width={"100%"}
+              height={"100%"}
             />
           </div>
         ) : null}
-        <div className="mt-5 h-4/5 w-full rounded-lg bg-[#F5F5F5] p-0.5 pb-5 ring ring-ringColor sm:h-3/5">
+        <div className="mt-5 h-3/5 w-full rounded-lg bg-[#F5F5F5] p-0.5 pb-5 ring ring-ringColor sm:h-3/5">
           {summary ? (
             <div className="h-full">
               <QuerySummary summary={summary} />

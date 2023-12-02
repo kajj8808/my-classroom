@@ -25,12 +25,12 @@ function QueryChat() {
 
   const onValid = ({ message }: IForm) => {
     if (!isLoading) {
-      setChats((prev) => [...prev, { isGPT: false, message }]);
+      setChats((prev) => [{ isGPT: false, message }, ...prev]);
       reset();
       setIsLoading(true);
       setChats((prev) => [
-        ...prev,
         { isGPT: true, message: "gpt response data" },
+        ...prev,
       ]);
       setIsLoading(false);
     }
@@ -43,31 +43,29 @@ function QueryChat() {
   }, [scrollRef]);
 
   return (
-    <>
+    <div className="flex h-[55%] flex-col justify-between">
       <div
-        className="h-[50%] items-center overflow-y-auto px-[5%] pb-[2%] sm:h-[45%]"
+        className="flex h-full w-full flex-col-reverse gap-2 overflow-x-auto px-[2%] pb-[2%]"
         ref={scrollRef}
       >
-        <div className="flex h-full w-full flex-col justify-end gap-2">
-          {chats.map((item, key) => (
+        {chats.map((item, key) => (
+          <div
+            key={key}
+            className={`flex items-start space-x-2 ${
+              item.isGPT ? "" : "flex-row-reverse space-x-reverse "
+            }`}
+          >
             <div
-              key={key}
-              className={`flex items-start space-x-2 ${
-                item.isGPT ? "" : "flex-row-reverse space-x-reverse "
+              className={`max-w-[70%] overflow-hidden overflow-ellipsis rounded-full border p-2 text-sm ${
+                item.isGPT
+                  ? "rounded-bl-none bg-[#D4D4D4] text-textColor"
+                  : "rounded-br-none bg-[#2B2B2B] text-white"
               }`}
             >
-              <div
-                className={`max-w-[70%] overflow-hidden overflow-ellipsis rounded-full border p-2 text-sm ${
-                  item.isGPT
-                    ? "rounded-bl-none bg-[#D4D4D4] text-textColor"
-                    : "rounded-br-none bg-[#2B2B2B] text-white"
-                }`}
-              >
-                <span>{item.message}</span>
-              </div>
+              <span>{item.message}</span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
       <form
         className="relative flex w-full px-5 "
@@ -87,7 +85,7 @@ function QueryChat() {
           <button className="top-4.5 absolute right-8 text-lg">🔜</button>
         )}
       </form>
-    </>
+    </div>
   );
 }
 

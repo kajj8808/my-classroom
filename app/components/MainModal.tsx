@@ -48,7 +48,7 @@ export default function MainModal({
         className="z-30 h-full w-full bg-[rgba(0,0,0,0.7)]"
         onClick={onClick}
       ></div>
-      <div className="absolute z-50 h-full w-full max-w-5xl overflow-scroll bg-white px-10 py-5 scrollbar-none sm:top-[5%] sm:h-[95%] sm:w-10/12 sm:rounded-t-3xl sm:p-10 sm:p-10">
+      <div className="absolute z-50 h-full w-full max-w-5xl overflow-scroll scroll-smooth bg-white px-10 py-5 scrollbar-none sm:top-[5%] sm:h-[95%] sm:w-10/12 sm:rounded-t-3xl sm:p-10">
         <div className="flex h-[5%] items-center justify-between">
           <div className="flex gap-1 font-bold">
             <span>[{title}]</span>

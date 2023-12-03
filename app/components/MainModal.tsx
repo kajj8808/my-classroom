@@ -80,7 +80,7 @@ export default function MainModal({
             <div className="h-full">
               <QuerySummary summary={summary} />
               <div className="m-3 border-t border-[#939393]" />
-              <QueryChat />
+              <QueryChat summary={summary} />
             </div>
           ) : (
             <span>Loading..</span>

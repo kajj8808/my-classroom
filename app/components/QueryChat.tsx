@@ -16,25 +16,51 @@ interface IForm {
   message: String;
 }
 
-function QueryChat() {
+function QueryChat({ summary }: { summary: String }) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const [botMessage, setBotMessage] = useState<String[]>([]);
 
   const [chats, setChats] = useState<IMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm<IForm>();
 
-  const onValid = ({ message }: IForm) => {
+  const onValid = async ({ message }: IForm) => {
     if (!isLoading) {
+      setIsLoading(true);
       setChats((prev) => [{ isGPT: false, message }, ...prev]);
       reset();
-      setIsLoading(true);
-      setChats((prev) => [
-        { isGPT: true, message: "gpt response data" },
-        ...prev,
-      ]);
-      setIsLoading(false);
+      const res = await fetch("/api/chats", {
+        method: "POST",
+        body: JSON.stringify({ summary, message }),
+      });
+      const data = res.body;
+      if (!data) {
+        return;
+      }
+      const reader = data.getReader();
+      const textDecoder = new TextDecoder();
+      while (true) {
+        const stream = await reader.read();
+        if (stream.done) {
+          setIsLoading(false);
+          break;
+        }
+        const chuckData = textDecoder.decode(stream.value);
+        setBotMessage((prev) => [...prev, chuckData]);
+      }
     }
   };
+
+  useEffect(() => {
+    if (botMessage.length != 0 && isLoading == false) {
+      setChats((prev) => [
+        { isGPT: true, message: botMessage.join("") },
+        ...prev,
+      ]);
+      setBotMessage([]);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -48,6 +74,13 @@ function QueryChat() {
         className="flex h-full w-full flex-col-reverse gap-2 overflow-x-auto px-[2%] pb-[2%]"
         ref={scrollRef}
       >
+        {isLoading ? (
+          <div className="flex items-start space-x-2">
+            <div className="line-clamp-6 max-w-[70%] overflow-hidden overflow-ellipsis rounded-full rounded-bl-none border bg-[#D4D4D4] p-2 text-sm text-textColor">
+              {botMessage.join("")}
+            </div>
+          </div>
+        ) : null}
         {chats.map((item, key) => (
           <div
             key={key}
@@ -56,7 +89,7 @@ function QueryChat() {
             }`}
           >
             <div
-              className={`max-w-[70%] overflow-hidden overflow-ellipsis rounded-full border p-2 text-sm ${
+              className={`line-clamp-6 max-w-[70%] overflow-hidden overflow-ellipsis rounded-2xl border p-2 text-sm ${
                 item.isGPT
                   ? "rounded-bl-none bg-[#D4D4D4] text-textColor"
                   : "rounded-br-none bg-[#2B2B2B] text-white"
@@ -88,5 +121,5 @@ function QueryChat() {
     </div>
   );
 }
-
+export const runtime = "edge";
 export default QueryChat;

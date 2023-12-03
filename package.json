@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",
+    "ai": "^2.2.27",
+    "eventsource-parser": "^1.1.1",
     "framer-motion": "^10.16.7",
     "next": "14.0.3",
+    "openai": "^4.20.1",
+    "openai-edge-stream": "^2.0.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",

@@ -76,7 +76,7 @@ function QueryChat({ summary }: { summary: String }) {
       >
         {isLoading ? (
           <div className="flex items-start space-x-2">
-            <div className="line-clamp-6 max-w-[70%] overflow-hidden overflow-ellipsis rounded-full rounded-bl-none border bg-[#D4D4D4] p-2 text-sm text-textColor">
+            <div className="max-w-[70%] overflow-hidden overflow-ellipsis rounded-2xl rounded-bl-none border bg-[#D4D4D4] p-2 text-sm text-textColor">
               {botMessage.join("")}
             </div>
           </div>
@@ -89,7 +89,7 @@ function QueryChat({ summary }: { summary: String }) {
             }`}
           >
             <div
-              className={`line-clamp-6 max-w-[70%] overflow-hidden overflow-ellipsis rounded-2xl border p-2 text-sm ${
+              className={`max-w-[70%] overflow-hidden overflow-ellipsis rounded-2xl border p-2 text-sm ${
                 item.isGPT
                   ? "rounded-bl-none bg-[#D4D4D4] text-textColor"
                   : "rounded-br-none bg-[#2B2B2B] text-white"
@@ -101,7 +101,7 @@ function QueryChat({ summary }: { summary: String }) {
         ))}
       </div>
       <form
-        className="relative flex w-full px-5 "
+        className="relative flex w-full px-5 pt-1"
         onSubmit={handleSubmit(onValid)}
       >
         <input
@@ -112,7 +112,10 @@ function QueryChat({ summary }: { summary: String }) {
         />
         {isLoading ? (
           <button className="top-4.5 absolute right-8 text-lg" disabled>
-            Loading...
+            <svg
+              className="mr-3 h-5 w-5 animate-spin fill-slate-950"
+              viewBox="0 0 24 24"
+            ></svg>
           </button>
         ) : (
           <button className="top-4.5 absolute right-8 text-lg">🔜</button>

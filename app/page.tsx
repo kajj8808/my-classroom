@@ -27,7 +27,9 @@ export default function Home({ searchParams }: Props) {
 
   useEffect(() => {
     (async () => {
-      const json = await (await fetch("/transcripts")).json();
+      const json = await (
+        await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/transcripts`)
+      ).json();
       setItems(json.transcripts);
     })();
   }, []);
@@ -38,6 +40,7 @@ export default function Home({ searchParams }: Props) {
       <div className="flex w-full">
         <div className="grid w-full grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-4">
           {items?.map((item, key) => <ProductItem item={item} key={key} />)}
+
           <ProductItemAdd />
         </div>
       </div>

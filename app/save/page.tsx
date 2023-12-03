@@ -19,7 +19,7 @@ export default function Page() {
     if (url) {
       setIsLoading(true);
       const json = await (
-        await fetch(" /create", {
+        await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/create`, {
           next: { tags: ["collection"] },
           method: "POST",
           mode: "cors",

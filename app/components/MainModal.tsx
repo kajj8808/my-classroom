@@ -43,7 +43,7 @@ export default function MainModal({
   };
 
   return (
-    <div className="absolute left-0 top-0 flex h-[100svh] min-h-screen w-full justify-center ">
+    <div className="absolute left-0 top-0 flex h-[100svh] w-full justify-center ">
       <div
         className="z-30 h-full w-full bg-[rgba(0,0,0,0.7)]"
         onClick={onClick}

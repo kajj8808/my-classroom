@@ -6,6 +6,27 @@ import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import QueryChat from "./QueryChat";
 import QuerySummary from "./QuerySummary";
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 export default function MainModal({
   title,
@@ -26,13 +47,10 @@ export default function MainModal({
     if (title) {
       (async () => {
         const json = await (
-          await fetch(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/summary/${title}`,
-            {
-              method: "GET",
-              mode: "cors",
-            },
-          )
+          await fetch(`http://119.69.229.31:8000/summary/${title}`, {
+            method: "GET",
+            mode: "cors",
+          })
         ).json();
         setSummary(json.result);
       })();
@@ -49,7 +67,7 @@ export default function MainModal({
         className="z-30 h-full w-full bg-[rgba(0,0,0,0.7)]"
         onClick={onClick}
       ></div>
-      <div className="fixed bottom-0 z-50 h-full min-h-[600px] w-full max-w-5xl overflow-scroll scroll-smooth bg-white px-10 py-5 scrollbar-none sm:top-[5%] sm:h-[95%] sm:w-10/12 sm:rounded-t-3xl sm:p-10">
+      <div className="animate-fade-up animate-duration-300 fixed bottom-0 z-50 h-full min-h-[600px] w-full max-w-5xl overflow-scroll scroll-smooth bg-white px-10 py-5 scrollbar-none sm:top-[5%] sm:h-[95%] sm:w-10/12 sm:rounded-t-3xl sm:p-10">
         <div className=" flex h-[5%] items-center justify-between">
           <div className="flex gap-1 font-bold">
             <span>[{title}]</span>
@@ -76,17 +94,16 @@ export default function MainModal({
             />
           </div>
         ) : null}
-        <div className="mt-5 h-3/5 w-full rounded-lg bg-[#F5F5F5] p-0.5 pb-5 ring ring-ringColor sm:h-3/5">
-          {summary ? (
+
+        {summary ? (
+          <div className="mt-5 h-3/5 w-full rounded-lg bg-[#F5F5F5] p-0.5 pb-5 ring ring-ringColor sm:h-3/5">
             <div className="h-full">
               <QuerySummary summary={summary} />
               <div className="m-3 border-t border-[#939393]" />
               <QueryChat summary={summary} />
             </div>
-          ) : (
-            <span>Loading..</span>
-          )}
-        </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

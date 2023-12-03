@@ -1,4 +1,5 @@
 "use client";
+import ThreeDotsWave from "@components/ThreeDotsWave";
 import Title from "@components/Title";
 import VideoSummaryEditor from "@components/VideoSummaryEditor";
 import { useState } from "react";
@@ -49,10 +50,14 @@ export default function Page() {
               type="text"
               className="w-full rounded-lg px-5 ring-1 ring-ringColor"
               placeholder="Youtube URL"
+              autoComplete="off"
               {...register("url")}
             />
-            <button className="relative min-w-[9rem] cursor-pointer rounded-lg bg-textColor px-7 py-3 text-center text-base font-bold text-white ring-1 ring-textColor">
-              Next
+            <button
+              className="relative min-w-[9rem] cursor-pointer rounded-lg bg-textColor px-7 py-3 text-center text-base font-bold text-white ring-1 ring-textColor"
+              disabled={summary != "" || isLoading}
+            >
+              {summary != "" || isLoading ? "Loading..." : "Next"}
             </button>
           </div>
         </div>

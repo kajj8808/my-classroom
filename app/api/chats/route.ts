@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     {
       role: "system",
       content:
-        "You are Lesson Summary helpful assistant. with questions you can answer them in 50 characters or less. lang:Korea",
+        "You are Lesson Summary helpful assistant. with questions you can answer them in 50 characters or less. lang:Korea(존댓말)",
     },
     {
       role: "user",
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     model: "gpt-3.5-turbo",
     messages: messages,
     top_p: 1,
-    temperature: 0.7,
+    temperature: 0.2,
     frequency_penalty: 0,
     presence_penalty: 0,
     stream: true,

@@ -76,9 +76,9 @@ function QueryChat({ summary }: { summary: String }) {
       >
         {isLoading ? (
           <div className="flex items-start space-x-2">
-            <div className="max-w-[70%] overflow-hidden overflow-ellipsis rounded-2xl rounded-bl-none border bg-[#D4D4D4] p-2 text-sm text-textColor">
+            <span className="max-w-[70%] overflow-hidden overflow-ellipsis whitespace-pre-wrap rounded-2xl rounded-bl-none border bg-[#D4D4D4] p-2 text-sm text-textColor">
               {botMessage.join("")}
-            </div>
+            </span>
           </div>
         ) : null}
         {chats.map((item, key) => (
@@ -95,7 +95,7 @@ function QueryChat({ summary }: { summary: String }) {
                   : "rounded-br-none bg-[#2B2B2B] text-white"
               }`}
             >
-              <span>{item.message}</span>
+              <span className="whitespace-pre-wrap">{item.message}</span>
             </div>
           </div>
         ))}
@@ -108,6 +108,7 @@ function QueryChat({ summary }: { summary: String }) {
           className="w-full rounded-full px-3 py-1 outline-none ring ring-ringColor"
           type="text"
           placeholder="Message MyClass..."
+          autoComplete="off"
           {...register("message", { required: true })}
         />
         {isLoading ? (

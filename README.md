@@ -5,5 +5,5 @@
 ## Pages
 
 - [x] main
-- [>] main modal
+- [x] main modal
 - [x] save

@@ -13,7 +13,10 @@ function ProductItem({ item }: { item: IItem }) {
     return match && match[1] ? match[1] : null;
   };
   return (
-    <Link href={`/?videoId=${getVideoId(item.link)}&title=${item.name}`}>
+    <Link
+      href={`/?videoId=${getVideoId(item.link)}&title=${item.name}`}
+      className="flex flex-col items-center"
+    >
       <Image
         src={`https://img.youtube.com/vi/${getVideoId(item.link)}/original.jpg`}
         alt=""

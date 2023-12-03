@@ -28,7 +28,7 @@ export default function Home({ searchParams }: Props) {
   useEffect(() => {
     (async () => {
       const json = await (
-        await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/transcripts`)
+        await fetch(`http://119.69.229.31:8000/transcripts`)
       ).json();
       setItems(json.transcripts);
     })();

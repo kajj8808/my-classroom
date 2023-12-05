@@ -16,13 +16,13 @@ export async function POST(request: Request) {
   console.log(openai.apiKey);
   const body = await request.json();
   const originalSummary: String = body.summary;
-  const sliceSummary = originalSummary.slice(0, 4000);
+  const sliceSummary = originalSummary;
 
   const messages: ChatCompletionMessageParam[] = [
     {
       role: "system",
       content:
-        "You are Lesson Summary helpful assistant. with questions you can answer them in 50 characters or less. lang:Korea(존댓말)",
+      "You are Lesson Summary helpful assistant. with questions lang:Korea(존댓말)",
     },
     {
       role: "user",

@@ -67,14 +67,13 @@ export default function MainModal({
         className="z-30 h-full w-full bg-[rgba(0,0,0,0.7)]"
         onClick={onClick}
       ></div>
-      <div className="animate-fade-up animate-duration-300 fixed bottom-0 z-50 h-full min-h-[600px] w-full max-w-5xl overflow-scroll scroll-smooth bg-white px-10 py-5 scrollbar-none sm:top-[5%] sm:h-[95%] sm:w-10/12 sm:rounded-t-3xl sm:p-10">
-        <div className=" flex h-[5%] items-center justify-between">
+      <div className="fixed bottom-0 z-50 h-full min-h-[600px] w-full max-w-3xl animate-fade-up overflow-scroll scroll-smooth bg-white px-10 py-5 scrollbar-none animate-duration-300 sm:top-[5%] sm:h-[95%] sm:w-10/12 sm:rounded-t-3xl">
+        <div className="flex h-[5%] items-center justify-between">
           <div className="flex gap-1 font-bold">
-            <span>[{title}]</span>
-            <span>{videoId}</span>
+            <span>{title}</span>
           </div>
           <button onClick={onClick}>
-            <Image src={"/close.png"} alt="" width={32} height={32} />
+            <Image src={"/close.png"} alt="" width={26} height={26} />
           </button>
         </div>
         {/* <iframe
@@ -85,7 +84,7 @@ export default function MainModal({
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; auto"
         ></iframe> */}
         {hasWindow ? (
-          <div className="mt-5 h-[30%] overflow-hidden rounded-lg ring ring-ringColor">
+          <div className="mt-3 h-[30%] overflow-hidden rounded-lg ring ring-ringColor">
             <ReactPlayer
               url={[`https://www.youtube.com/embed/${videoId}`]}
               controls

@@ -112,14 +112,14 @@ function QueryChat({ summary }: { summary: String }) {
           {...register("message", { required: true })}
         />
         {isLoading ? (
-          <button className="top-4.5 absolute right-8 text-lg" disabled>
-            <svg
-              className="mr-3 h-5 w-5 animate-spin fill-slate-950"
-              viewBox="0 0 24 24"
-            ></svg>
-          </button>
+          <button
+            className="top-4.5 absolute right-8 text-lg"
+            disabled
+          ></button>
         ) : (
-          <button className="top-4.5 absolute right-8 text-lg">🔜</button>
+          <button className="absolute right-8 top-[6px] text-lg text-[#2B2B2B]">
+            ➤
+          </button>
         )}
       </form>
     </div>

@@ -2,8 +2,10 @@
 import ThreeDotsWave from "@components/ThreeDotsWave";
 import Title from "@components/Title";
 import VideoSummaryEditor from "@components/VideoSummaryEditor";
+import { url } from "inspector";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { getVideoId } from "util/youtube";
 
 interface IForm {
   url: String;
@@ -11,7 +13,7 @@ interface IForm {
 }
 
 export default function Page() {
-  const { register, handleSubmit } = useForm<IForm>();
+  const { register, handleSubmit, watch } = useForm<IForm>();
 
   const [isEdit, setIsEdit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +31,7 @@ export default function Page() {
           },
           body: JSON.stringify({
             link: url,
-            name: `강의_${new Date().getTime()}`,
+            name: `강의_${getVideoId(url)}`,
           }),
         })
       ).json();
@@ -53,23 +55,28 @@ export default function Page() {
               autoComplete="off"
               {...register("url")}
             />
-            <button
-              className="relative min-w-[9rem] cursor-pointer rounded-lg bg-textColor px-7 py-3 text-center text-base font-bold text-white ring-1 ring-textColor"
-              disabled={summary != "" || isLoading}
-            >
-              {summary != "" || isLoading ? "Loading..." : "Next"}
-            </button>
+            {summary === "" ? (
+              <button
+                className="relative min-w-[9rem]  rounded-lg bg-textColor px-7 py-3 text-center text-base font-bold text-white ring-1 ring-textColor"
+                disabled={isLoading}
+              >
+                {isLoading ? "Loading..." : "Next"}
+              </button>
+            ) : (
+              <div className="relative min-w-[9rem] rounded-lg bg-[#939393] px-7 py-3 text-center text-base font-bold text-white ring-1 ring-textColor">
+                Done
+              </div>
+            )}
           </div>
         </div>
 
         {isEdit ? (
           <>
-            <input
-              type="text"
+            <span
               className="mt-8 border-b border-ringColor bg-bgColor py-2 text-2xl outline-none"
               {...register("title", {
                 required: true,
-                value: `강의_${new Date().getTime()}`,
+                value: `강의_${getVideoId(watch("url"))}`,
               })}
             />
           </>

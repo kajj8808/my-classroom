@@ -34,7 +34,6 @@ export default function VideoSummaryEditor({
       <div className="mt-8 flex w-full justify-end">
         <div className="flex gap-3">
           <SubmitButton />
-          <CancelButton />
         </div>
       </div>
     </form>

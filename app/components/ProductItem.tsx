@@ -25,15 +25,7 @@ function ProductItem({ item }: { item: IItem }) {
             height={300}
             className="h-36 w-full cursor-pointer rounded-lg bg-slate-400"
           />
-          <div className="absolute top-0 flex h-36 w-full items-center justify-center group-hover:bg-[rgba(0,0,0,0.2)]">
-            <Image
-              src={"/polygon.png"}
-              alt="play"
-              width={45}
-              height={45}
-              className="relative z-50 h-16 w-16 rounded-full bg-productColor p-4"
-            />
-          </div>
+          
         </div>
         <p className="mt-1 text-lg font-bold group-hover:text-[#fff]">
           {item.name}

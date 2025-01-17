@@ -7,3 +7,6 @@
 - [x] main
 - [x] main modal
 - [x] save
+
+## PDF
+- [Google Drive](https://drive.google.com/file/d/1zuxYK693nQtKopuqxwmMCxneYLGHXS5d/view?usp=sharing)
